@@ -1,0 +1,36 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+Width="320" Height="180"
+AllowsTransparency="True"
+Background="Transparent"
+WindowStyle="None">
+    <Grid>
+    </Grid>
+    <Window.TaskbarItemInfo>
+         <TaskbarItemInfo>
+          <TaskbarItemInfo.ThumbButtonInfos>
+            <ThumbButtonInfoCollection/>
+          </TaskbarItemInfo.ThumbButtonInfos>
+         </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
+    <Window.Resources>
+        <DataTemplate x:Key="OverlayIcon">
+            <Grid Width="20" Height="20">
+                <Rectangle Fill="{Binding Color}"
+                            Stroke="{Binding TextColor}"
+                            StrokeThickness="1"
+                            RadiusX="4"
+                            RadiusY="4"/>
+    
+                <TextBlock Text="{Binding Text}"
+                            TextAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="{Binding TextColor}"
+                            FontWeight="Bold"
+                            Height="20"
+                            FontSize="14">
+                </TextBlock>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+</Window>
