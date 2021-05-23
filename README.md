@@ -81,6 +81,8 @@ When the notifier is clicked, actions you specify here are executed sequentially
 |Action Name|Description|
 |---|---|
 |FocusOnFolder|Opens the Outlook folder which the notifier is monitoring.|
+|OpenNewestUnread|Opens the newest unread email.|
+|OpenOldestUnread|Opens the oldest unread email.|
 |MarkAllAsRead|Marks all emails in the folder as read.|
 |ToggleDoNotDisturb|Toggles Do Not Disturb mode. In Do Not Disturb mode, unread count update and icon flashing are paused.|
 |FocusOnApp|Focuses on the specified app window. The app name is a process name which you can check in the properties window from Task Manager.|
