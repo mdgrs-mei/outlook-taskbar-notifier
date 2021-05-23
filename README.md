@@ -3,12 +3,13 @@ Outlook Taskbar Notifier is a Windows taskbar application that notifies you of u
 
 ![taskbar](./docs/taskbar.png)
 
-The notifier makes it easier for you to find new emails moved into sub folders. If you use folders to receive notifications from some web services (Jira, GitHub, GitLab etc.) you can boot the notifier for each folder and they will work like desktop app notifications for the services.
+Unlike Outlook's default desktop notifications you won't miss unread emails even after leaving your seat. If you use folders to receive notifications from some web services (Jira, GitHub, GitLab etc.) you can make a dedicated notifier for each, assign the icons you like and add thumb buttons to quickly access the sites. They will work like small desktop apps for the services.
 
 ## Features
 - Notifies unread email count for an Outlook folder
 - Customizable icons and badge colors
 - Customizable actions performed when the notifier is clicked
+- Thumb buttons with customizable actions
 
 ## Requirements
 - Tested on Windows 10 and Powershell 5.1
