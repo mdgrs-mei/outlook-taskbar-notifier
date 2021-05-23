@@ -119,16 +119,24 @@ class OutlookFolder
         }
     }
 
-    [void] MarkAllAsRead()
+    [Object] GetUnreadItems()
     {
         if (-not $this.IsFolderValid())
         {
-            return
+            return $null
         }
+        return $this.folder.Items.Restrict("[UnRead] = True")
+    }
 
+    [void] MarkAllAsRead()
+    {
         try 
         {
-            $items = $this.folder.Items.Restrict("[UnRead] = True")
+            $items = $this.GetUnreadItems()
+            if (-not $items)
+            {
+                return
+            }
             for ($i = $items.Count; $i -gt 0; --$i)
             {
                 $items[$i].Unread = $false
@@ -151,5 +159,51 @@ class OutlookFolder
         $folderPathArg = '"' + $folderPathArg + '"'
         Start-Process $this.outlookExePath -Wait -ArgumentList "/recycle", "/select", $folderPathArg
         FocusApp "outlook.exe"
+    }
+
+    [void] OpenNewestUnread()
+    {
+        try 
+        {
+            $items = $this.GetUnreadItems()
+            if (-not $items)
+            {
+                return
+            }
+            if ($items.Count -eq 0)
+            {
+                return
+            }
+            $items.Sort("[ReceivedTime]")
+            $items[$items.Count].Display()
+            FocusApp "outlook.exe"
+        }
+        catch
+        {
+            Write-Host "OpenNewestUnread failed. [$PSItem]"
+        }
+    }
+
+    [void] OpenOldestUnread()
+    {
+        try 
+        {
+            $items = $this.GetUnreadItems()
+            if (-not $items)
+            {
+                return
+            }
+            if ($items.Count -eq 0)
+            {
+                return
+            }
+            $items.Sort("[ReceivedTime]")
+            $items[1].Display()
+            FocusApp "outlook.exe"
+        }
+        catch
+        {
+            Write-Host "OpenOldestUnread failed. [$PSItem]"
+        }
     }
 }

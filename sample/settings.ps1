@@ -62,6 +62,13 @@ $settings = @{
     # You can add max 7 buttons.
     thumbButtons = @(
         ,@{
+            description = "Open unread email"
+            iconPath = ".\open_mail.png"
+            clickActions = @(
+                ,@("OpenOldestUnread")
+            )
+        }
+        ,@{
             description = "Mark all as read"
             iconPath = ".\mark_read.png"
             clickActions = @(
