@@ -43,10 +43,6 @@ class OutlookFolder
             {
                 return "Failed to find folder [{0}]." -f $this.folderPath
             }
-            if (-not $this.folder.Parent)
-            {
-                return "Root folder is not supported [{0}]." -f $this.folderPath
-            }
             return "Folder is not valid [{0}]." -f $this.folderPath
         }
         return ""
@@ -104,13 +100,12 @@ class OutlookFolder
 
         try 
         {
-            # get folder again to refresh UnreadItemCount
-            $this.folder = [OutlookFolder]::FindFolder($this.folder.Parent.Folders, $this.folderPath)
-            if (-not $this.IsFolderValid())
+            $items = $this.GetUnreadItems()
+            if (-not $items)
             {
-                return $errorUnreadCount
+                return 0;
             }
-            return $this.folder.UnreadItemCount
+            return $items.Count
         }
         catch
         {

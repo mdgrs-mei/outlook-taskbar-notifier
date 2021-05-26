@@ -9,11 +9,7 @@ function PrintFolders($folders)
 {
     foreach ($folder in $folders)
     {
-        # Exclude the root folders
-        if ($folder.Parent.GetType().Name -ne "NameSpaceClass")
-        {
-            $folder.FolderPath
-        }
+        $folder.FolderPath
         PrintFolders $folder.Folders
     }
 }
