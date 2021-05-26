@@ -37,6 +37,7 @@ class ActionGenerator
                 $window.ToggleDoNotDisturb()
                 $unreadCount = $outlookFolder.GetUnreadCount()
                 $window.UpdateUnreadCount($unreadCount)
+                $true
             }.GetNewClosure()
 
             "FocusOnApp" = {
@@ -64,7 +65,8 @@ class ActionGenerator
                 else
                 {
                     Start-Process $args[0] -NoNewWindow
-                }    
+                }
+                $true
             }
         }
     }
