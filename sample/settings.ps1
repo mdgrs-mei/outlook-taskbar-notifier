@@ -11,7 +11,7 @@ $settings = @{
     }
 
     # Icon file used for the title bar. The path should be either a relative path from this settings file or a full path.
-    iconPath = ".\icon.png"
+    iconPath = ".\icons\icon.png"
 
     # Unread count is queried with this interval.
     updateUnreadCountIntervalInSeconds = 3
@@ -63,28 +63,28 @@ $settings = @{
     thumbButtons = @(
         ,@{
             description = "Open unread email"
-            iconPath = ".\open_mail.png"
+            iconPath = ".\icons\open_mail.png"
             clickActions = @(
                 ,@("OpenOldestUnread")
             )
         }
         ,@{
             description = "Mark all as read"
-            iconPath = ".\mark_read.png"
+            iconPath = ".\icons\mark_read.png"
             clickActions = @(
                 ,@("MarkAllAsRead")
             )
         }
         ,@{
             description = "Jump to notifications page"
-            iconPath = ".\web.png"
+            iconPath = ".\icons\web.png"
             clickActions = @(
                 ,@("RunCommand", '"C:\Program Files\Mozilla Firefox\firefox.exe"', "-url", "https://github.com/notifications")
             )
         }
         ,@{
             description = "Toggle Do Not Disturb"
-            iconPath = ".\notifications_off.png"
+            iconPath = ".\icons\notifications_off.png"
             clickActions = @(
                 ,@("ToggleDoNotDisturb")
             )
