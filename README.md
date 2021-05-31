@@ -86,10 +86,11 @@ When the notifier is clicked, actions you specify here are executed sequentially
 |OpenOldestUnread|Opens the oldest unread email.|
 |MarkAllAsRead|Marks all emails in the folder as read.|
 |ToggleDoNotDisturb|Toggles Do Not Disturb mode. In Do Not Disturb mode, unread count update and icon flashing are paused.|
-|FocusOnApp|Focuses on the specified app window. The app name is a process name which you can check in the properties window from Task Manager.|
+|FocusOnApp|Focuses on the specified app window. The app name is a process name which you can check in the properties window from Task Manager. If the app is not found, subsequent actions will not be executed.|
 |SendKeysToAppInFocus|Sends keyboard inputs to the app in focus. The key string format follows Windows.Forms.SendKeys format: https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=net-5.0|
 |SleepMilliseconds|Waits for specified milliseconds to tweak the timing for SendKeys.|
 |RunCommand|Runs any executable with arguments.|
+|RunCommandAndWait|Runs any executable with arguments and waits until the process finishes.|
 
 ### More complex examples
 1. Marks all as read and opens a web page. Recommended for web services which have notifications pages but don't support desktop notifications.
@@ -128,7 +129,7 @@ thumbButtons = @(
             ,@("MarkAllAsRead")
         )
     }
-}
+)
 ```
 You can add maximum 7 thumb buttons and define actions performed when they are clicked. The formats of `iconPath` and `clickActions` are the same as before.
 
