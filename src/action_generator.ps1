@@ -68,6 +68,18 @@ class ActionGenerator
                 }
                 $true
             }
+
+            "RunCommandAndWait" = {
+                if ($args.Length -gt 1)
+                {
+                    Start-Process $args[0] -ArgumentList $args[1..($args.Length-1)] -NoNewWindow -Wait
+                }
+                else
+                {
+                    Start-Process $args[0] -NoNewWindow -Wait
+                }
+                $true
+            }
         }
     }
 
