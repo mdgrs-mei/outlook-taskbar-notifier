@@ -3,6 +3,7 @@
 class OutlookFolder
 {
     $folderPath
+    $folderName
     $outlookExePath
     $outlook
     $folder
@@ -10,6 +11,7 @@ class OutlookFolder
     [String] Init($folderPath, $outlookExePath)
     {
         $this.folderPath = $folderPath
+        $this.folderName = $folderPath.Substring($folderPath.LastIndexOf("\")+1)
         $this.outlookExePath = $outlookExePath
         return $this.InitOutlook()
     }
@@ -78,7 +80,7 @@ class OutlookFolder
 
     [String] GetName()
     {
-        return $this.folder.Name
+        return $this.folderName
     }
 
     [String] InitOutlookIfNotValid()
