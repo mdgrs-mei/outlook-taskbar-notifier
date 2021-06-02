@@ -54,7 +54,7 @@ class OutlookFolder
     {
         foreach ($folder in $folders)
         {
-            if ($folder.FolderPath.ToString() -eq $folderPath)
+            if ($folder.FolderPath -and ($folder.FolderPath.ToString() -eq $folderPath))
             {
                 return $folder
             }
