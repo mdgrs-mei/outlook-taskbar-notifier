@@ -146,3 +146,7 @@ This tool takes a settings file and creates a shortcut to run the notifier. If y
 ## [tools/convert_image_to_ico.bat](./tools/convert_image_to_ico.bat)
 
 Converts an image to `.ico` file. When you want to update the icon of the shortcut, run this tool.
+
+# Sample Icons
+
+The sample icons except [icon.png](./sample/icons/icon.png) were downloaded from [Google Material Icons](https://fonts.google.com/icons) which are distributed under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
