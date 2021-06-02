@@ -47,7 +47,7 @@ else
 $shell = New-Object -ComObject WScript.Shell
 $shortcut = $shell.CreateShortcut($shortcutPath)
 $shortcut.TargetPath = "powershell.exe"
-$shortcut.Arguments = "-ExecutionPolicy Unrestricted -WindowStyle Hidden `"$notifierPath`" `"$settingsPath`""
+$shortcut.Arguments = "-ExecutionPolicy Unrestricted -WindowStyle Hidden -File `"$notifierPath`" `"$settingsPath`""
 $shortcut.WorkingDirectory = Split-Path $settingsPath -Parent
 $shortcut.WindowStyle = 7 # Minimized
 $shortcut.IconLocation = $iconLocation
