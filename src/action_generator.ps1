@@ -87,24 +87,24 @@ class ActionGenerator
     {
     }
 
-    [Object] CreateActionSequence($actionSettings)
+    [Object] CreateActionSequence($actions)
     {
         $class = $this
 
         $block = {
-            $class.ExecuteActions($actionSettings)
+            $class.ExecuteActions($actions)
         }.GetNewClosure()
 
         return $block
     }
 
-    [void] ExecuteActions($actionSettings)
+    [void] ExecuteActions($actions)
     {
         try
         {
-            foreach ($actionSetting in $actionSettings)
+            foreach ($action in $actions)
             {
-                $success = $this.ExecuteAction($actionSetting)
+                $success = $this.ExecuteAction($action)
                 if (-not $success)
                 {
                     return
@@ -117,14 +117,14 @@ class ActionGenerator
         }
     }
 
-    [boolean] ExecuteAction($actionSetting)
+    [boolean] ExecuteAction($action)
     {
-        $actionSetting = @($actionSetting)
+        $action = @($action)
         Write-Host "Action:"
-        Write-Host $actionSetting
+        Write-Host $action
 
-        $actionName = $actionSetting[0]
-        $actionArgs = $actionSetting[1..($actionSetting.Count-1)]
+        $actionName = $action[0]
+        $actionArgs = $action[1..($action.Count-1)]
 
         if ($actionName -eq "Or")
         {
