@@ -79,18 +79,19 @@ clickActions = @(
 When the notifier is clicked, actions you specify here are executed sequentially.
 
 ### Actions
-|Action Name|Description|
-|---|---|
-|FocusOnFolder|Opens the Outlook folder which the notifier is monitoring.|
-|OpenNewestUnread|Opens the newest unread email.|
-|OpenOldestUnread|Opens the oldest unread email.|
-|MarkAllAsRead|Marks all emails in the folder as read.|
-|ToggleDoNotDisturb|Toggles Do Not Disturb mode. In Do Not Disturb mode, unread count update and icon flashing are paused.|
-|FocusOnApp|Focuses on the specified app window. The app name is a process name which you can check in the properties window from Task Manager. If the app is not found, subsequent actions will not be executed.|
-|SendKeysToAppInFocus|Sends keyboard inputs to the app in focus. The key string format follows Windows.Forms.SendKeys format: https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=net-5.0|
-|SleepMilliseconds|Waits for specified milliseconds to tweak the timing for SendKeys.|
-|RunCommand|Runs any executable with arguments.|
-|RunCommandAndWait|Runs any executable with arguments and waits until the process finishes.|
+|Action Name|Description|When does it succeed?|
+|---|---|---|
+|FocusOnFolder|Opens the Outlook folder which the notifier is monitoring.|Always.|
+|OpenNewestUnread|Opens the newest unread email.|When the mail is opened.|
+|OpenOldestUnread|Opens the oldest unread email.|When the mail is opened.|
+|MarkAllAsRead|Marks all emails in the folder as read.|Always.|
+|ToggleDoNotDisturb|Toggles Do Not Disturb mode. In Do Not Disturb mode, unread count update and icon flashing are paused.|Always.|
+|FocusOnApp|Focuses on the specified app window. The app name is a process name which you can check in the properties window from Task Manager. If the app is not found, subsequent actions will not be executed.|When the app exists.|
+|SendKeysToAppInFocus|Sends keyboard inputs to the app in focus. The key string format follows Windows.Forms.SendKeys format: https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=net-5.0|Always.|
+|SleepMilliseconds|Waits for specified milliseconds to tweak the timing for SendKeys.|Always.|
+|RunCommand|Runs any executable with arguments.|Always.|
+|RunCommandAndWait|Runs any executable with arguments and waits until the process finishes.|Always.|
+|Or|Executes actions specified as arguments sequentially and returns when an action succeeds.|When one of the actions succeeds.|
 
 ### More complex examples
 1. Marks all as read and opens a web page. Recommended for web services which have notifications pages but don't support desktop notifications.
@@ -113,6 +114,13 @@ When the notifier is clicked, actions you specify here are executed sequentially
         ,@("SendKeysToAppInFocus", "^1")
         ,@("SleepMilliseconds", 100)
         ,@("SendKeysToAppInFocus", "gn")
+    )
+    ```
+
+1. Opens an unread mail and if it fails, opens the folder.
+    ``` powershell
+    clickActions = @(
+        ,@("Or", @("OpenNewestUnread"), @("FocusOnFolder"))
     )
     ```
 
