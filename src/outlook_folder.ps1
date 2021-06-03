@@ -158,49 +158,53 @@ class OutlookFolder
         FocusApp "outlook.exe"
     }
 
-    [void] OpenNewestUnread()
+    [boolean] OpenNewestUnread()
     {
         try 
         {
             $items = $this.GetUnreadItems()
             if (-not $items)
             {
-                return
+                return $false
             }
             if ($items.Count -eq 0)
             {
-                return
+                return $false
             }
             $items.Sort("[ReceivedTime]")
             $items[$items.Count].Display()
             FocusApp "outlook.exe"
+            return $true
         }
         catch
         {
             Write-Host "OpenNewestUnread failed. [$PSItem]"
+            return $false
         }
     }
 
-    [void] OpenOldestUnread()
+    [boolean] OpenOldestUnread()
     {
         try 
         {
             $items = $this.GetUnreadItems()
             if (-not $items)
             {
-                return
+                return $false
             }
             if ($items.Count -eq 0)
             {
-                return
+                return $false
             }
             $items.Sort("[ReceivedTime]")
             $items[1].Display()
             FocusApp "outlook.exe"
+            return $true
         }
         catch
         {
             Write-Host "OpenOldestUnread failed. [$PSItem]"
+            return $false
         }
     }
 }

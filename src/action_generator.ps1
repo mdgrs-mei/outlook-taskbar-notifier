@@ -13,17 +13,17 @@ class ActionGenerator
             }.GetNewClosure()
 
             "OpenNewestUnread" = {
-                $outlookFolder.OpenNewestUnread()
+                $opened = $outlookFolder.OpenNewestUnread()
                 $unreadCount = $outlookFolder.GetUnreadCount()
                 $window.UpdateUnreadCount($unreadCount)
-                $true
+                $opened
             }.GetNewClosure()
 
             "OpenOldestUnread" = {
-                $outlookFolder.OpenOldestUnread()
+                $opened = $outlookFolder.OpenOldestUnread()
                 $unreadCount = $outlookFolder.GetUnreadCount()
                 $window.UpdateUnreadCount($unreadCount)
-                $true
+                $opened
             }.GetNewClosure()
 
             "MarkAllAsRead" = {
