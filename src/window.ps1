@@ -69,6 +69,8 @@ class Window
         {
             return
         }
+        
+        $this.isFlashing = $false
 
         if ($this.skipOnClicked)
         {
@@ -79,7 +81,6 @@ class Window
             $this.onClicked.Invoke()
         }
 
-        $this.isFlashing = $false
         $this.window.WindowState = [System.Windows.WindowState]::Minimized
     }
 
