@@ -58,6 +58,13 @@ $settings = @{
     )
     #>
 
+    <#
+    # Open an unread email if it exists. Open the folder if there is no unread email.
+    clickActions = @(
+        ,@("Or", @("OpenNewestUnread"), @("FocusOnFolder"))
+    )
+    #>
+
     # Thumb buttons
     # You can add max 7 buttons.
     thumbButtons = @(
