@@ -104,26 +104,48 @@ class ActionGenerator
         {
             foreach ($actionSetting in $actionSettings)
             {
-                $actionSetting = @($actionSetting)
-                Write-Host "Action:"
-                Write-Host $actionSetting
-
-                $actionName = $actionSetting[0]
-                $actionArgs = $actionSetting[1..($actionSetting.Count-1)]
-                $block = $this.actionTable[$actionName]
-                if ($block)
+                $success = $this.ExecuteAction($actionSetting)
+                if (-not $success)
                 {
-                    $success = Invoke-Command $block -ArgumentList $actionArgs
-                    if (-not $success)
-                    {
-                        return
-                    }
+                    return
                 }
-            }    
+            }
         }
         catch
         {
             Write-Host "Action failed. [$PSItem]"
+        }
+    }
+
+    [boolean] ExecuteAction($actionSetting)
+    {
+        $actionSetting = @($actionSetting)
+        Write-Host "Action:"
+        Write-Host $actionSetting
+
+        $actionName = $actionSetting[0]
+        $actionArgs = $actionSetting[1..($actionSetting.Count-1)]
+
+        if ($actionName -eq "Or")
+        {
+            foreach ($subAction in $actionArgs)
+            {
+                if ($this.ExecuteAction($subAction))
+                {
+                    return $true
+                }
+            }
+            return $false
+        }
+        else
+        {
+            $block = $this.actionTable[$actionName]
+            if (-not $block)
+            {
+                return $false
+            }
+            $success = Invoke-Command $block -ArgumentList $actionArgs
+            return $success
         }
     }
 }
