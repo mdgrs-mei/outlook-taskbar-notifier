@@ -16,8 +16,8 @@ Unlike Outlook's default desktop notifications you won't miss unread emails even
 - Outlook desktop app needs to be installed
 
 ## Installation
-1. Download and extract the zip anywhere you like
-1. Edit `settings.ps1` (See [Settings](#Settings))
+1. Download and extract the zip or clone this repository anywhere you like
+1. Copy and edit `settings.ps1` (See [Settings](#Settings))
 1. Run [`tools/create_shortcut.bat`](#toolscreate_shortcutbat) and save the shortcut
 1. Run the shortcut
 
@@ -34,7 +34,7 @@ outlook = @{
 ```
 `folderPath` is a path of the outlook folder which the notifier monitors. You can list all your folder paths by running [`tools/list_outlook_folders.bat`](#toolslist_outlook_foldersbat).
 
-`exePath` is a path to Outlook exe. It is used in `FocusOnFolder` action.
+`exePath` is a path to Outlook exe. It is used by `FocusOnFolder` action. Check the path from your Outlook's shortcut property.
 
 ## Icon image
 
@@ -76,7 +76,7 @@ clickActions = @(
 )
 ```
 
-When the notifier is clicked, actions you specify here are executed sequentially.
+When the notifier is clicked, actions you specify here are executed sequentially. If an action fails, the subsequent actions will not be executed.
 
 ### Actions
 |Action Name|Description|When does it succeed?|
@@ -85,8 +85,8 @@ When the notifier is clicked, actions you specify here are executed sequentially
 |OpenNewestUnread|Opens the newest unread email.|When the mail is opened.|
 |OpenOldestUnread|Opens the oldest unread email.|When the mail is opened.|
 |MarkAllAsRead|Marks all emails in the folder as read.|Always.|
-|ToggleDoNotDisturb|Toggles Do Not Disturb mode. In Do Not Disturb mode, unread count update and icon flashing are paused.|Always.|
-|FocusOnApp|Focuses on the specified app window. The app name is a process name which you can check in the properties window from Task Manager. If the app is not found, subsequent actions will not be executed.|When the app exists.|
+|ToggleDoNotDisturb|Toggles [Do Not Disturb mode](#do-not-disturb-mode).|Always.|
+|FocusOnApp|Focuses on the specified app window. The app name is a process name which you can check in the properties window from Task Manager.|When the app exists.|
 |SendKeysToAppInFocus|Sends keyboard inputs to the app in focus. The key string format follows Windows.Forms.SendKeys format: https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=net-5.0|Always.|
 |SleepMilliseconds|Waits for specified milliseconds to tweak the timing for SendKeys.|Always.|
 |RunCommand|Runs any executable with arguments.|Always.|
@@ -140,6 +140,12 @@ thumbButtons = @(
 )
 ```
 You can add maximum 7 thumb buttons and define actions performed when they are clicked. The formats of `iconPath` and `clickActions` are the same as before.
+
+## Do Not Disturb mode
+
+![do_not_disturb](./docs/do_not_disturb.png)
+
+Do Not Disturb mode can be turned on by `ToggleDoNotDisturb` click action. In Do Not Disturb mode, unread count update and icon flashing are paused and it's indicated by `"D"` badge.
 
 # Tools
 
