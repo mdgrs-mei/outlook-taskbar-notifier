@@ -155,6 +155,25 @@ class OutlookFolder
         $folderPathArg = "outlook:" + $this.folderPath
         $folderPathArg = '"' + $folderPathArg + '"'
         Start-Process $this.outlookExePath -Wait -ArgumentList "/recycle", "/select", $folderPathArg
+        $explorer = $this.outlook.ActiveExplorer()
+        if ($explorer)
+        {
+            try
+            {
+                $explorer.ClearSearch()
+                $explorer.ClearSelection()
+                $view = $explorer.CurrentView
+                if ($view)
+                {
+                    # Reset the selection to top.
+                    $view.Apply()
+                }
+            }
+            catch
+            {
+                Write-Host "Focus on folder failed. [$PSItem]"
+            }
+        }
         FocusApp "outlook.exe"
     }
 
