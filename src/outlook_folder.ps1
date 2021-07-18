@@ -75,7 +75,7 @@ class OutlookFolder
 
     [boolean] IsFolderValid()
     {
-        return $this.folder.Name -and $this.folder.Parent
+        return $this.folder.Name
     }
 
     [String] GetName()
