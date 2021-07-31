@@ -152,13 +152,23 @@ class OutlookFolder
             return
         }
 
-        $folderPathArg = "outlook:" + $this.folderPath
-        $folderPathArg = '"' + $folderPathArg + '"'
-        Start-Process $this.outlookExePath -Wait -ArgumentList "/recycle", "/select", $folderPathArg
-        $explorer = $this.outlook.ActiveExplorer()
-        if ($explorer)
+        try 
         {
-            try
+            $explorer = $this.outlook.ActiveExplorer()
+            if ($explorer)
+            {
+                $explorer.Activate()
+                $explorer.CurrentFolder = $this.folder
+            }
+            else
+            {
+                $folderPathArg = "outlook:" + $this.folderPath
+                $folderPathArg = '"' + $folderPathArg + '"'
+                Start-Process $this.outlookExePath -Wait -ArgumentList "/recycle", "/select", $folderPathArg
+                $explorer = $this.outlook.ActiveExplorer()
+            }
+
+            if ($explorer)
             {
                 $explorer.ClearSearch()
                 $explorer.ClearSelection()
@@ -169,12 +179,12 @@ class OutlookFolder
                     $view.Apply()
                 }
             }
-            catch
-            {
-                Write-Host "Focus on folder failed. [$PSItem]"
-            }
+            FocusApp "outlook.exe"
         }
-        FocusApp "outlook.exe"
+        catch
+        {
+            Write-Host "Focus on folder failed. [$PSItem]"
+        }
     }
 
     [boolean] OpenNewestUnread()
