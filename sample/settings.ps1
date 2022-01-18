@@ -26,8 +26,8 @@ $settings = @{
 
     # Show a summary of unread items during a mouse over.
     unreadItemsSummary = @{
-        enable = $false               # Set $true or $false to toggle this feature.
-        maxItemCount = 2
+        enable = $true               # Set $true or $false to toggle this feature.
+        maxItemCount = 10
     }
 
     # Flashes taskbar when unread email count increases.
