@@ -39,8 +39,11 @@ $window.StartTimerFunction({
     $unreadCount = $outlookFolder.GetUnreadCount()
     $window.UpdateUnreadCount($unreadCount)
 
-    $unreadItemsSummary = $outlookFolder.GetUnreadItemsSummary()
-    $window.SetTaskbarItemInfoDescription($unreadItemsSummary)
+    if ($settings.unreadItemsSummary.enable)
+    {
+        $unreadItemsSummary = $outlookFolder.GetUnreadItemsSummary($settings.unreadItemsSummary.maxItemCount)
+        $window.SetTaskbarItemInfoDescription($unreadItemsSummary)
+    }
 }, $settings.updateUnreadCountIntervalInSeconds)
 $window.ShowDialog()
 $window.Term()
