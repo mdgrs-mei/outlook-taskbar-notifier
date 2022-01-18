@@ -38,6 +38,9 @@ $window.StartTimerFunction({
     $outlookFolder.InitOutlookIfNotValid()
     $unreadCount = $outlookFolder.GetUnreadCount()
     $window.UpdateUnreadCount($unreadCount)
+
+    $unreadItemsSummary = $outlookFolder.GetUnreadItemsSummary()
+    $window.SetTaskbarItemInfoDescription($unreadItemsSummary)
 }, $settings.updateUnreadCountIntervalInSeconds)
 $window.ShowDialog()
 $window.Term()

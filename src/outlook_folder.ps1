@@ -125,6 +125,45 @@ class OutlookFolder
         return $this.folder.Items.Restrict("[UnRead] = True")
     }
 
+    [String] GetUnreadItemsSummary()
+    {
+        $summary = ""
+        try 
+        {
+            $items = $this.GetUnreadItems()
+            if (-not $items)
+            {
+                return $summary
+            }
+            $items.Sort("[ReceivedTime]", $true)
+
+            $titleMaxLength = 20
+            $maxSummaryItemCount = 10
+            for ($i = 0; $i -lt $items.Count; $i++)
+            {
+                if ($i -eq $maxSummaryItemCount)
+                {
+                    $summary += "..."
+                    break
+                }
+
+                $item = $items.Item($i+1)
+                $title = $item.Subject
+                if ($title.Length -gt $titleMaxLength)
+                {
+                    $title = $title.SubString(0, $titleMaxLength) + "..."
+                }
+                $itemStr = "{0}`n" -f $title
+                $summary += $itemStr
+            }
+        }
+        catch
+        {
+            Write-Host "GetUnreadItemsSummary failed. [$PSItem]"
+        }
+        return $summary
+    }
+
     [void] MarkAllAsRead()
     {
         try 
