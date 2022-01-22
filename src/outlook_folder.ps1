@@ -125,7 +125,7 @@ class OutlookFolder
         return $this.folder.Items.Restrict("[UnRead] = True")
     }
 
-    [String] GetUnreadItemsSummary($maxSummaryItemCount)
+    [String] GetUnreadItemsSummary($maxItemCount, $maxItemCharacterCount)
     {
         $summary = ""
         try 
@@ -137,10 +137,10 @@ class OutlookFolder
             }
             $items.Sort("[ReceivedTime]", $true)
 
-            $titleMaxLength = 20
+            $titleMaxLength = $maxItemCharacterCount
             for ($i = 0; $i -lt $items.Count; $i++)
             {
-                if ($i -eq $maxSummaryItemCount)
+                if ($i -eq $maxItemCount)
                 {
                     $summary += "..."
                     break

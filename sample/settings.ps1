@@ -28,6 +28,7 @@ $settings = @{
     unreadItemsSummary = @{
         enable = $true               # Set $true or $false to toggle this feature.
         maxItemCount = 10
+        maxItemCharacterCount = 26
     }
 
     # Flashes taskbar when unread email count increases.
