@@ -141,6 +141,20 @@ thumbButtons = @(
 ```
 You can add maximum 7 thumb buttons and define actions performed when they are clicked. The formats of `iconPath` and `clickActions` are the same as before.
 
+## Unread items summary
+
+<img src="./docs/unread_items_summary.png" width=260>
+
+``` powershell
+unreadItemsSummary = @{
+    enable = $true
+    maxItemCount = 10
+    maxItemCharacterCount = 32
+}
+```
+
+Titles of unread emails are displayed on top of the thumbnail window.
+
 ## Do Not Disturb mode
 
 ![do_not_disturb](./docs/do_not_disturb.png)
