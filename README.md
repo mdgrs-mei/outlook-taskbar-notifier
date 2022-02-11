@@ -57,6 +57,8 @@ overlayIcon = @{
 You can change the unread badge color. Available WPF color names are listed here:
 https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors?view=net-5.0
 
+If you want to hide the unread number, set `textColor` to `"Transparent"`.
+
 ## Taskbar icon flashing
 
 ``` powershell

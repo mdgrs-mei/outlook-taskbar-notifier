@@ -21,7 +21,7 @@ $settings = @{
     # https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors?view=net-5.0
     overlayIcon = @{
         backgroundColor = "DeepPink"
-        textColor = "White"
+        textColor = "White"         # If you want to hide the unread number, set this to "Transparent".
     }
 
     # Show a summary of unread items during a mouse over.
