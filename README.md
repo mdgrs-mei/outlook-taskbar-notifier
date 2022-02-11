@@ -1,8 +1,8 @@
-<div style="text-align: center;">
+<div align="center">
 
 # Outlook Taskbar Notifier
 
-Outlook Taskbar Notifier is a Windows taskbar application that notifies you of unread emails in an Outlook folder.
+Outlook Taskbar Notifier is a Windows taskbar application that notifies you of unread emails in an Outlook folder by showing an overlay badge.
 
 ![capture](./docs/capture.gif)
 
