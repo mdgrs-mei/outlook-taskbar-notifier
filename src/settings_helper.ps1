@@ -1,7 +1,9 @@
-function SetSettingsDirectory($settings, $settingsPath)
+function InitSettings($settingsPath)
 {
+    . $settingsPath
     $dir = Split-Path $settingsPath -Parent
     $settings.directory = $dir
+    $settings
 }
 
 function GetFullPathFromSettingsRelativePath($settings, $path)

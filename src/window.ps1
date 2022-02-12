@@ -1,4 +1,4 @@
-# process.ps1 must be included before executing this file.
+# process.ps1, settings_helper.ps1 must be included before executing this file.
 # "Add-Type -AssemblyName PresentationFramework" must be called before including this file.
 
 . (Join-Path (Split-Path $MyInvocation.MyCommand.Path -Parent) "flash_window.ps1")

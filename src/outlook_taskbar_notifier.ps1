@@ -11,8 +11,7 @@ Set-Location $scriptDir
 . .\action_generator.ps1
 
 $settingsPath = $args[0]
-. $settingsPath
-SetSettingsDirectory $settings $settingsPath
+$settings = InitSettings $settingsPath
 
 $outlookFolder = [OutlookFolder]::new()
 $outlookFolder.Init($settings.outlook.folderPath, $settings.outlook.exePath)
