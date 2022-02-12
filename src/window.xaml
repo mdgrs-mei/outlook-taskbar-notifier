@@ -14,8 +14,9 @@ WindowStyle="None">
          </TaskbarItemInfo>
     </Window.TaskbarItemInfo>
     <Window.Resources>
+        <x:Double x:Key="OverlayIconSize">20</x:Double>
         <DataTemplate x:Key="OverlayIcon">
-            <Grid Width="20" Height="20">
+            <Grid Width="{DynamicResource OverlayIconSize}" Height="{DynamicResource OverlayIconSize}">
                 <Rectangle Fill="{Binding Color}"
                             Stroke="{Binding TextColor}"
                             StrokeThickness="1"
@@ -27,7 +28,7 @@ WindowStyle="None">
                             VerticalAlignment="Center"
                             Foreground="{Binding TextColor}"
                             FontWeight="Bold"
-                            Height="20"
+                            Height="{DynamicResource OverlayIconSize}"
                             FontSize="14">
                 </TextBlock>
             </Grid>

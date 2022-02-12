@@ -161,8 +161,8 @@ class Window
             $this.window.TaskbarItemInfo.Overlay = $null
             return
         }
-        $width = 20
-        $height = 20
+
+        $iconSize = $this.window.Resources["OverlayIconSize"]
         $dpi = 96
         if ($this.doNotDisturb)
         {
@@ -174,8 +174,9 @@ class Window
             $backgroundColor = $this.settings.overlayIcon.backgroundColor
             $textColor = $this.settings.overlayIcon.textColor
         }
-        $bitmap = New-Object System.Windows.Media.Imaging.RenderTargetBitmap($width, $height, $dpi, $dpi, [System.Windows.Media.PixelFormats]::Default)
-        $rect = New-Object System.Windows.Rect 0, 0, $width, $height
+
+        $bitmap = New-Object System.Windows.Media.Imaging.RenderTargetBitmap($iconSize, $iconSize, $dpi, $dpi, [System.Windows.Media.PixelFormats]::Default)
+        $rect = New-Object System.Windows.Rect 0, 0, $iconSize, $iconSize
         $control = New-Object System.Windows.Controls.ContentControl
         $control.ContentTemplate = $this.window.Resources["OverlayIcon"]
         $control.content = [PSCustomObject]@{
