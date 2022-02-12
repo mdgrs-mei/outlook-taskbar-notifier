@@ -33,18 +33,18 @@ class Window
         # Start with Normal window to make Windows draw preview window.
         $this.window.WindowState = [System.Windows.WindowState]::Normal
 
-        $class = $this
+        $thisInstance = $this
 
         $this.window.add_Loaded({
-            $class.OnLoaded()
+            $thisInstance.OnLoaded()
         }.GetNewClosure())
 
         $this.window.add_ContentRendered({
-            $class.OnContentRendered()
+            $thisInstance.OnContentRendered()
         }.GetNewClosure())
 
         $this.window.add_StateChanged({
-            $class.OnStateChanged()
+            $thisInstance.OnStateChanged()
         }.GetNewClosure())
     }
 

@@ -89,10 +89,10 @@ class ActionGenerator
 
     [Object] CreateActionSequence($actions)
     {
-        $class = $this
+        $thisInstance = $this
 
         $block = {
-            $class.ExecuteActions($actions)
+            $thisInstance.ExecuteActions($actions)
         }.GetNewClosure()
 
         return $block
