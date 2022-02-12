@@ -4,7 +4,7 @@ class ActionGenerator
 {
     $actionTable = @{}
 
-    [void] Init($outlookFolder, $window)
+    [void] Init($outlookFolder, $window, $updateUnreadFunc)
     {
         $this.actionTable = @{
             "FocusOnFolder" = {
@@ -14,29 +14,25 @@ class ActionGenerator
 
             "OpenNewestUnread" = {
                 $opened = $outlookFolder.OpenNewestUnread()
-                $unreadCount = $outlookFolder.GetUnreadCount()
-                $window.UpdateUnreadCount($unreadCount)
+                Invoke-Command $updateUnreadFunc
                 $opened
             }.GetNewClosure()
 
             "OpenOldestUnread" = {
                 $opened = $outlookFolder.OpenOldestUnread()
-                $unreadCount = $outlookFolder.GetUnreadCount()
-                $window.UpdateUnreadCount($unreadCount)
+                Invoke-Command $updateUnreadFunc
                 $opened
             }.GetNewClosure()
 
             "MarkAllAsRead" = {
                 $outlookFolder.MarkAllAsRead()
-                $unreadCount = $outlookFolder.GetUnreadCount()
-                $window.UpdateUnreadCount($unreadCount)
+                Invoke-Command $updateUnreadFunc
                 $true
             }.GetNewClosure()
 
             "ToggleDoNotDisturb" = {
                 $window.ToggleDoNotDisturb()
-                $unreadCount = $outlookFolder.GetUnreadCount()
-                $window.UpdateUnreadCount($unreadCount)
+                Invoke-Command $updateUnreadFunc
                 $true
             }.GetNewClosure()
 

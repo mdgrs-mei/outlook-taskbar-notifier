@@ -20,8 +20,21 @@ $windowTitle = $outlookFolder.GetName()
 $window = [Window]::new()
 $window.Init(".\window.xaml", $windowTitle, $settings)
 
+$updateUnreadFunc = {
+    $unreadCount = $outlookFolder.GetUnreadCount()
+    $window.UpdateUnreadCount($unreadCount)
+
+    if ($settings.unreadItemsSummary.enable)
+    {
+        $unreadItemsSummary = $outlookFolder.GetUnreadItemsSummary(
+            $settings.unreadItemsSummary.maxItemCount,
+            $settings.unreadItemsSummary.maxItemCharacterCount)
+        $window.SetTaskbarItemInfoDescription($unreadItemsSummary)
+    }
+}.GetNewClosure()
+
 $actionGenerator = [ActionGenerator]::new()
-$actionGenerator.Init($outlookFolder, $window)
+$actionGenerator.Init($outlookFolder, $window, $updateUnreadFunc)
 
 $clickActions = $actionGenerator.CreateActionSequence($settings.clickActions)
 $window.SetOnClickedFunction($clickActions)
@@ -35,16 +48,7 @@ foreach ($thumbButtonSetting in $settings.thumbButtons)
 
 $window.StartTimerFunction({
     $outlookFolder.InitOutlookIfNotValid()
-    $unreadCount = $outlookFolder.GetUnreadCount()
-    $window.UpdateUnreadCount($unreadCount)
-
-    if ($settings.unreadItemsSummary.enable)
-    {
-        $unreadItemsSummary = $outlookFolder.GetUnreadItemsSummary(
-            $settings.unreadItemsSummary.maxItemCount,
-            $settings.unreadItemsSummary.maxItemCharacterCount)
-        $window.SetTaskbarItemInfoDescription($unreadItemsSummary)
-    }
+    Invoke-Command $updateUnreadFunc
 }, $settings.updateUnreadCountIntervalInSeconds)
 $window.ShowDialog()
 $window.Term()
