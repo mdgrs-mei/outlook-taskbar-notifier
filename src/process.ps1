@@ -46,7 +46,7 @@ function GetRootProcess($appName)
     $rootProcess = $processes[0]
     foreach ($process in $processes)
     {
-        if ($childCount[$process] -gt $maxChildCount)
+        if ($childCount[$process.ProcessId] -gt $maxChildCount)
         {
             $rootProcess = $process
         }
