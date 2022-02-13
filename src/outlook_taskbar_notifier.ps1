@@ -14,7 +14,7 @@ $settingsPath = $args[0]
 $settings = InitSettings $settingsPath
 
 $outlookFolder = [OutlookFolder]::new()
-$outlookFolder.Init($settings.outlook.folderPath, $settings.outlook.exePath)
+$outlookFolder.Init($settings.outlook.folderPath)
 
 $windowTitle = $outlookFolder.GetName()
 $window = [Window]::new()

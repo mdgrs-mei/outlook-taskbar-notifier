@@ -4,15 +4,13 @@ class OutlookFolder
 {
     $folderPath
     $folderName
-    $outlookExePath
     $outlook
     $folder
 
-    [String] Init($folderPath, $outlookExePath)
+    [String] Init($folderPath)
     {
         $this.folderPath = $folderPath
         $this.folderName = $folderPath.Substring($folderPath.LastIndexOf("\")+1)
-        $this.outlookExePath = $outlookExePath
         return $this.InitOutlook()
     }
 

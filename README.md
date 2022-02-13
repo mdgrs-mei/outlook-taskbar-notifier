@@ -34,12 +34,9 @@ You can customize the behavior by a settings file. A sample settings file is pla
 ```powershell
 outlook = @{
     folderPath = "\\your-email-address@sample.com\folder-name"
-    exePath = "C:\Program Files\Microsoft Office\root\office16\OUTLOOK.EXE"
 }
 ```
 `folderPath` is a path of the outlook folder which the notifier monitors. You can list all your folder paths by running [`tools/list_outlook_folders.bat`](#toolslist_outlook_foldersbat).
-
-`exePath` is a path to Outlook exe. It is used by `FocusOnFolder` action. Check the path from your Outlook's shortcut property.
 
 ## Icon image
 

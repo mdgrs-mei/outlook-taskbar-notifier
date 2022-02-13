@@ -5,9 +5,6 @@ $settings = @{
     outlook = @{
         # The outlook folder full path.
         folderPath = "\\your-email-addres@sample.com\folder-name"
-
-        # The path to Outlook exe which is used for the FocusOnFolder action.
-        exePath = "C:\Program Files\Microsoft Office\root\office16\OUTLOOK.EXE"
     }
 
     # Icon file used for the title bar. The path should be either a relative path from this settings file or a full path.
