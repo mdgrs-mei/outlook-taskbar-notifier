@@ -197,17 +197,7 @@ class OutlookFolder
             {
                 $explorer.Activate()
                 $explorer.CurrentFolder = $this.folder
-            }
-            else
-            {
-                $folderPathArg = "outlook:" + $this.folderPath
-                $folderPathArg = '"' + $folderPathArg + '"'
-                Start-Process $this.outlookExePath -Wait -ArgumentList "/recycle", "/select", $folderPathArg
-                $explorer = $this.outlook.ActiveExplorer()
-            }
 
-            if ($explorer)
-            {
                 $explorer.ClearSearch()
                 $explorer.ClearSelection()
                 $view = $explorer.CurrentView
@@ -217,6 +207,12 @@ class OutlookFolder
                     $view.Apply()
                 }
             }
+            else
+            {
+                $this.folder.Display()
+                $explorer = $this.outlook.ActiveExplorer()
+            }
+
             FocusApp "outlook.exe"
         }
         catch
