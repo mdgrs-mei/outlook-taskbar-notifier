@@ -17,7 +17,7 @@ Compared to Outlook's default desktop notifications you are less likely to miss 
 - Thumb buttons with customizable actions
 
 ## Requirements
-- Tested on Windows 10 and Powershell 5.1
+- Tested on Windows 10/11 and Powershell 5.1
 - Outlook desktop app needs to be installed
 
 ## Installation
@@ -36,7 +36,7 @@ outlook = @{
     folderPath = "\\your-email-address@sample.com\folder-name"
 }
 ```
-`folderPath` is a path of the outlook folder which the notifier monitors. You can list all your folder paths by running [`tools/list_outlook_folders.bat`](#toolslist_outlook_foldersbat).
+`folderPath` is a path of the outlook folder that the notifier monitors. You can list all your folder paths by running [`tools/list_outlook_folders.bat`](#toolslist_outlook_foldersbat).
 
 ## Icon image
 
@@ -85,7 +85,7 @@ When the notifier is clicked, actions you specify here are executed sequentially
 ### Actions
 |Action Name|Description|When does it succeed?|
 |---|---|---|
-|FocusOnFolder|Opens the Outlook folder which the notifier is monitoring.|Always.|
+|FocusOnFolder|Opens the Outlook folder that the notifier is monitoring.|Always.|
 |OpenNewestUnread|Opens the newest unread email.|When the mail is opened.|
 |OpenOldestUnread|Opens the oldest unread email.|When the mail is opened.|
 |MarkAllAsRead|Marks all emails in the folder as read.|Always.|
@@ -98,7 +98,7 @@ When the notifier is clicked, actions you specify here are executed sequentially
 |Or|Executes actions specified as arguments sequentially and returns when an action succeeds.|When one of the actions succeeds.|
 
 ### More complex examples
-1. Marks all as read and opens a web page. Recommended for web services which have notifications pages but don't support desktop notifications.
+1. Marks all as read and opens a web page. Recommended for web services that have notifications pages but don't support desktop notifications.
 
     ``` powershell
     # Opens GitHub notifications page.
@@ -108,7 +108,7 @@ When the notifier is clicked, actions you specify here are executed sequentially
     )
     ```
 
-1. Marks all as read and sends keys to an app. Recommended for services which have shortcut commands to their notifications page.
+1. Marks all as read and sends keys to an app. Recommended for services that have shortcut commands to their notifications page.
 
     ``` powershell
     # Opens GitHub notifications page by sending shortcut keys to a pinned tab in Chrome.
@@ -169,11 +169,11 @@ Do Not Disturb mode can be turned on by `ToggleDoNotDisturb` click action. In Do
 
 ## [tools/list_outlook_folders.bat](./tools/list_outlook_folders.bat)
 
-Lists all the Outlook folder paths which the notifier can monitor. Copy one of the folder paths and paste it in your settings file.
+Lists all the Outlook folder paths that the notifier can monitor. Copy one of the folder paths and paste it in your settings file.
 
 ## [tools/create_shortcut.bat](./tools/create_shortcut.bat)
 
-This tool takes a settings file and creates a shortcut to run the notifier. If you want to create another notifier which monitors another Outlook folder, you just need to create a settings file and run this tool again.
+This tool takes a settings file and creates a shortcut to run the notifier. If you want to create another notifier that monitors another Outlook folder, you just need to create a settings file and run this tool again.
 
 ## [tools/convert_image_to_ico.bat](./tools/convert_image_to_ico.bat)
 
