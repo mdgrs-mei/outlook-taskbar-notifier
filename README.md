@@ -40,7 +40,6 @@ outlook = @{
 
 ## Icon image
 
-![icons](./docs/icons.png)
 ```powershell
 iconPath = ".\icon.png"
 ```
@@ -63,6 +62,7 @@ If you want to hide the unread number, set `textColor` to `"Transparent"`.
 
 ## Taskbar icon flashing
 
+![icons](./docs/taskbar.png)
 ``` powershell
 flashTaskbar = @{
     enable = $true
