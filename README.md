@@ -90,6 +90,7 @@ When the notifier is clicked, actions you specify here are executed sequentially
 |FocusOnFolder|Opens the Outlook folder that the notifier is monitoring.|Always.|
 |OpenNewestUnread|Opens the newest unread email.|When the mail is opened.|
 |OpenOldestUnread|Opens the oldest unread email.|When the mail is opened.|
+|OpenUnreadIfOnlyOne|Opens an unread email if there is only one.|When the unread count is 1 and the mail is opened.|
 |MarkAllAsRead|Marks all emails in the folder as read.|Always.|
 |ToggleDoNotDisturb|Toggles [Do Not Disturb mode](#do-not-disturb-mode).|Always.|
 |FocusOnApp|Focuses on the specified app window. The app name is a process name which you can check in the properties window from Task Manager.|When the app exists.|
@@ -123,10 +124,10 @@ When the notifier is clicked, actions you specify here are executed sequentially
     )
     ```
 
-1. Opens an unread mail and if it fails, opens the folder.
+1. Opens an unread mail if there is only one. Otherwise opens the folder.
     ``` powershell
     clickActions = @(
-        ,@("Or", @("OpenNewestUnread"), @("FocusOnFolder"))
+        ,@("Or", @("OpenUnreadIfOnlyOne"), @("FocusOnFolder"))
     )
     ```
 
