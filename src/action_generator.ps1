@@ -24,6 +24,20 @@ class ActionGenerator
                 $opened
             }.GetNewClosure()
 
+            "OpenUnreadIfOnlyOne" = {
+                $unreadCount = $outlookFolder.GetUnreadCount()
+                if ($unreadCount -eq 1)
+                {
+                    $opened = $outlookFolder.OpenNewestUnread()
+                    Invoke-Command $updateUnreadFunc
+                    $opened
+                }
+                else
+                {
+                    $false
+                }
+            }.GetNewClosure()
+
             "MarkAllAsRead" = {
                 $outlookFolder.MarkAllAsRead()
                 Invoke-Command $updateUnreadFunc
