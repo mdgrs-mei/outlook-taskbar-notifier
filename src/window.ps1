@@ -162,31 +162,48 @@ class Window
             return
         }
 
-        $iconSize = $this.window.Resources["OverlayIconSize"]
         $dpi = 96
-        if ($this.doNotDisturb)
-        {
-            $backgroundColor = "Gray"
-            $textColor = "White"
-        }
-        else
-        {
-            $backgroundColor = $this.settings.overlayIcon.backgroundColor
-            $textColor = $this.settings.overlayIcon.textColor
-        }
+        $iconParameters = $this.GetOverlayIconParameters()
+        $iconParameters.Text = $content
 
-        $bitmap = New-Object System.Windows.Media.Imaging.RenderTargetBitmap($iconSize, $iconSize, $dpi, $dpi, [System.Windows.Media.PixelFormats]::Default)
-        $rect = New-Object System.Windows.Rect 0, 0, $iconSize, $iconSize
+        $bitmap = New-Object System.Windows.Media.Imaging.RenderTargetBitmap($iconParameters.IconSize, $iconParameters.IconSize, $dpi, $dpi, [System.Windows.Media.PixelFormats]::Default)
+        $rect = New-Object System.Windows.Rect 0, 0, $iconParameters.IconSize, $iconParameters.IconSize
         $control = New-Object System.Windows.Controls.ContentControl
         $control.ContentTemplate = $this.window.Resources["OverlayIcon"]
-        $control.content = [PSCustomObject]@{
-            Color = $backgroundColor
-            TextColor = $textColor
-            Text = $content
-        }
+        $control.content = [PSCustomObject]$iconParameters
         $control.Arrange($rect)
         $bitmap.Render($control)
         $this.window.TaskbarItemInfo.Overlay = $bitmap
+    }
+
+    [Object] GetOverlayIconParameters()
+    {
+        $parameters = @{}
+        $parameters.IconSize = 20.0
+        if ($this.settings.overlayIcon.size)
+        {
+            $parameters.IconSize = $this.settings.overlayIcon.size
+        }
+        $parameters.FontSize = $parameters.IconSize * 0.7
+
+        $parameters.LineWidth = 1.0
+        if ($this.settings.overlayIcon.lineWidth)
+        {
+            $parameters.LineWidth = $this.settings.overlayIcon.lineWidth
+        }
+
+        if ($this.doNotDisturb)
+        {
+            $parameters.Color = "Gray"
+            $parameters.TextColor = "White"
+        }
+        else
+        {
+            $parameters.Color = $this.settings.overlayIcon.backgroundColor
+            $parameters.TextColor = $this.settings.overlayIcon.textColor
+        }
+
+        return $parameters
     }
 
     [void] ToggleDoNotDisturb()
