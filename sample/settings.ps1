@@ -17,6 +17,8 @@ $settings = @{
     # Available WPF color names are listed here:
     # https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors?view=net-5.0
     overlayIcon = @{
+        size = 20.0
+        lineWidth = 1.0
         backgroundColor = "DeepPink"
         textColor = "White"         # If you want to hide the unread number, set this to "Transparent".
     }

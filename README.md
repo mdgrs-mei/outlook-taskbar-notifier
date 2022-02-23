@@ -50,12 +50,14 @@ An icon file used for the title bar. The image is converted to `.ico` file durin
 ![overlay_icon](./docs/overlay_icon.png)
 ``` powershell
 overlayIcon = @{
+    size = 20.0
+    lineWidth = 1.0
     backgroundColor = "DeepPink"
     textColor = "White"
 }
 ```
 
-You can change the unread badge color. Available WPF color names are listed here:
+You can change the unread badge size and color. Available WPF color names are listed here:
 https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors?view=net-5.0
 
 If you want to hide the unread number, set `textColor` to `"Transparent"`.
