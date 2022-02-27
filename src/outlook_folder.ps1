@@ -208,7 +208,6 @@ class OutlookFolder
             else
             {
                 $this.folder.Display()
-                $explorer = $this.outlook.ActiveExplorer()
             }
 
             FocusApp "outlook.exe"

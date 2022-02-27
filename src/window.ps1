@@ -170,7 +170,7 @@ class Window
         $rect = New-Object System.Windows.Rect 0, 0, $iconParameters.IconSize, $iconParameters.IconSize
         $control = New-Object System.Windows.Controls.ContentControl
         $control.ContentTemplate = $this.window.Resources["OverlayIcon"]
-        $control.content = [PSCustomObject]$iconParameters
+        $control.Content = [PSCustomObject]$iconParameters
         $control.Arrange($rect)
         $bitmap.Render($control)
         $this.window.TaskbarItemInfo.Overlay = $bitmap
