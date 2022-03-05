@@ -35,7 +35,23 @@ class OutlookFolder
         }
 
         $namespace = $this.outlook.GetNamespace("MAPI")
+
+        # find the folder in normal folders first
         $this.folder = [OutlookFolder]::FindFolder($namespace.Folders, $this.folderPath)
+
+        # find the folder in Search Folders if failed
+        if (-not $this.IsFolderValid())
+        {
+            foreach ($store in $namespace.Stores)
+            {
+                $searchFolders = $store.GetSearchFolders()
+                $this.folder = [OutlookFolder]::FindFolder($searchFolders, $this.folderPath)
+                if ($this.IsFolderValid())
+                {
+                    break
+                }
+            }
+        }
 
         if (-not $this.IsFolderValid())
         {
