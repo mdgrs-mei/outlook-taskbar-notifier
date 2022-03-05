@@ -4,7 +4,7 @@ class ActionGenerator
 {
     $actionTable = @{}
 
-    [void] Init($outlookFolder, $window, $updateUnreadFunc)
+    [void] Init($outlookFolder, $window, $settings, $updateUnreadFunc)
     {
         $this.actionTable = @{
             "FocusOnFolder" = {
@@ -45,7 +45,14 @@ class ActionGenerator
             }.GetNewClosure()
 
             "ToggleDoNotDisturb" = {
-                $window.ToggleDoNotDisturb()
+                if ($settings.globalDoNotDisturbMode)
+                {
+                    $window.ToggleGlobalDoNotDisturb()
+                }
+                else
+                {
+                    $window.ToggleDoNotDisturb()
+                }
                 Invoke-Command $updateUnreadFunc
                 $true
             }.GetNewClosure()

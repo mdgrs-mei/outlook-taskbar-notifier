@@ -1,7 +1,10 @@
 # process.ps1, settings_helper.ps1 must be included before executing this file.
 # "Add-Type -AssemblyName PresentationFramework" must be called before including this file.
 
-. (Join-Path (Split-Path $MyInvocation.MyCommand.Path -Parent) "flash_window.ps1")
+$srcDir = Split-Path $MyInvocation.MyCommand.Path -Parent
+$globalDoNotDisturbFilePath = Join-Path (Split-Path $srcDir -Parent) "do_not_disturb"
+
+. (Join-Path $srcDir "flash_window.ps1")
 
 class Window
 {
@@ -219,6 +222,31 @@ class Window
                 $this.ClearFlash()
                 $this.ClearFlash()
             }
+        }
+    }
+
+    [void] ToggleGlobalDoNotDisturb()
+    {
+        $isGlobalDoNotDisturb = Test-Path $script:globalDoNotDisturbFilePath
+        $isGlobalDoNotDisturb = -not $isGlobalDoNotDisturb
+        if ($isGlobalDoNotDisturb)
+        {
+            New-Item $script:globalDoNotDisturbFilePath -Force | Out-Null
+        }
+        else
+        {
+            Remove-item $script:globalDoNotDisturbFilePath -Force | Out-Null
+        }
+
+        $this.ReferToGlobalDoNotDisturb()
+    }
+
+    [void] ReferToGlobalDoNotDisturb()
+    {
+        $isGlobalDoNotDisturb = Test-Path $script:globalDoNotDisturbFilePath
+        if ($isGlobalDoNotDisturb -ne $this.doNotDisturb)
+        {
+            $this.ToggleDoNotDisturb()
         }
     }
 

@@ -34,7 +34,7 @@ $updateUnreadFunc = {
 }.GetNewClosure()
 
 $actionGenerator = [ActionGenerator]::new()
-$actionGenerator.Init($outlookFolder, $window, $updateUnreadFunc)
+$actionGenerator.Init($outlookFolder, $window, $settings, $updateUnreadFunc)
 
 $clickActions = $actionGenerator.CreateActionSequence($settings.clickActions)
 $window.SetOnClickedFunction($clickActions)
@@ -48,6 +48,10 @@ foreach ($thumbButtonSetting in $settings.thumbButtons)
 
 $window.StartTimerFunction({
     $outlookFolder.InitOutlookIfNotValid()
+    if ($settings.globalDoNotDisturbMode)
+    {
+        $window.ReferToGlobalDoNotDisturb()
+    }
     Invoke-Command $updateUnreadFunc
 }, $settings.updateUnreadCountIntervalInSeconds)
 $window.ShowDialog()
