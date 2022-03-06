@@ -45,7 +45,7 @@ class ActionGenerator
             }.GetNewClosure()
 
             "ToggleDoNotDisturb" = {
-                if ($settings.globalDoNotDisturbMode)
+                if ($settings.doNotDisturb.globalMode)
                 {
                     $window.ToggleGlobalDoNotDisturb()
                 }

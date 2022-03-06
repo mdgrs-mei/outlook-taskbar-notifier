@@ -48,7 +48,7 @@ foreach ($thumbButtonSetting in $settings.thumbButtons)
 
 $window.StartTimerFunction({
     $outlookFolder.InitOutlookIfNotValid()
-    if ($settings.globalDoNotDisturbMode)
+    if ($settings.doNotDisturb.globalMode)
     {
         $window.ReferToGlobalDoNotDisturb()
     }
