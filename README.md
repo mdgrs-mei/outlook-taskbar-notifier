@@ -74,6 +74,18 @@ flashTaskbar = @{
 ```
 You can change the flash rate and count or you can completely disable this feature.
 
+## Do Not Disturb
+
+![do_not_disturb](./docs/do_not_disturb.png)
+
+``` powershell
+doNotDisturb = @{
+    globalMode = $true
+}
+```
+
+Do Not Disturb mode can be turned on by `ToggleDoNotDisturb` click [action](#actions). In Do Not Disturb mode, unread count update and icon flashing are paused and it's indicated by `"D"` badge. If `globalMode` is `$true`, Do Not Disturb status is shared between all the notifier instances. If `globalMode` is `$false`, the notifier ignores the global Do Not Disturb status and you can control it independently. 
+
 ## Click actions
 
 ``` powershell
@@ -92,7 +104,7 @@ When the notifier is clicked, actions you specify here are executed sequentially
 |OpenOldestUnread|Opens the oldest unread email.|When the mail is opened.|
 |OpenUnreadIfOnlyOne|Opens an unread email if there is only one.|When the unread count is 1 and the mail is opened.|
 |MarkAllAsRead|Marks all emails in the folder as read.|Always.|
-|ToggleDoNotDisturb|Toggles [Do Not Disturb mode](#do-not-disturb-mode).|Always.|
+|ToggleDoNotDisturb|Toggles [Do Not Disturb mode](#do-not-disturb).|Always.|
 |FocusOnApp|Focuses on the specified app window. The app name is a process name which you can check in the properties window from Task Manager.|When the app exists.|
 |SendKeysToAppInFocus|Sends keyboard inputs to the app in focus. The key string format follows Windows.Forms.SendKeys format: https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=net-5.0|Always.|
 |SleepMilliseconds|Waits for specified milliseconds to tweak the timing for SendKeys.|Always.|
@@ -161,12 +173,6 @@ unreadItemsSummary = @{
 ```
 
 Titles of unread emails are displayed on top of the thumbnail window.
-
-## Do Not Disturb mode
-
-![do_not_disturb](./docs/do_not_disturb.png)
-
-Do Not Disturb mode can be turned on by `ToggleDoNotDisturb` click action. In Do Not Disturb mode, unread count update and icon flashing are paused and it's indicated by `"D"` badge.
 
 # Tools
 

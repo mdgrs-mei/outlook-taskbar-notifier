@@ -37,6 +37,11 @@ $settings = @{
         count = 2                     # Flash count
     }
 
+    # Do Not Disturb mode
+    doNotDisturb = @{
+        globalMode = $true            # $true or $false. If $true, Do Not Disturb status is shared between all the notifier instances.
+    }
+
     # Click Actions
     # The actions are executed sequentially when the app on the taskbar is clicked.
 
