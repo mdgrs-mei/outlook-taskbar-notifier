@@ -2,15 +2,17 @@
 
 class OutlookFolder
 {
+    $settings
     $folderPath
     $folderName
     $outlook
     $folder
 
-    [String] Init($folderPath)
+    [String] Init($settings)
     {
-        $this.folderPath = $folderPath
-        $this.folderName = $folderPath.Substring($folderPath.LastIndexOf("\")+1)
+        $this.settings = $settings
+        $this.folderPath = $settings.outlook.folderPath
+        $this.folderName = $this.folderPath.Substring($this.folderPath.LastIndexOf("\")+1)
         return $this.InitOutlook()
     }
 
@@ -136,7 +138,15 @@ class OutlookFolder
         {
             return $null
         }
-        return $this.folder.Items.Restrict("[UnRead] = True")
+
+        if ($this.settings.treatAllAsUnread)
+        {
+            return $this.folder.Items
+        }
+        else
+        {
+            return $this.folder.Items.Restrict("[UnRead] = True")
+        }
     }
 
     [String] GetUnreadItemsSummary($maxItemCount, $maxItemCharacterCount)
