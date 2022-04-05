@@ -13,6 +13,11 @@ $settings = @{
     # Unread count is queried with this interval.
     updateUnreadCountIntervalInSeconds = 3
 
+    # If this is set to $true, all of the emails in the folder are treated as unread.
+    # The badge count indicates the number of emails, not the actual unread count.
+    # This is useful for Follow up Search Folders.
+    treatAllAsUnread = $false
+
     # Overlay badge icon settings
     # Available WPF color names are listed here:
     # https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors?view=net-5.0
