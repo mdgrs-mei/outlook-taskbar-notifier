@@ -67,7 +67,7 @@ $settings = @{
     # Open GitHub notifications page which is pinned to tab1 on chrome
     clickActions = @(
         ,@("MarkAllAsRead")
-        ,@("FocusOnApp", "chrome.exe")      # Focus on an application
+        ,@("FocusOnApp", "chrome")      # Focus on an application
         ,@("SendKeysToAppInFocus", "^1")    # Send keyboard input to the app in focus. The key string format follows Windows.Forms.SendKeys format: https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=net-5.0
         ,@("SleepMilliseconds", 100)        # Wait for the specified milliseconds
         ,@("SendKeysToAppInFocus", "gn")    # GitHub notifications shortcut

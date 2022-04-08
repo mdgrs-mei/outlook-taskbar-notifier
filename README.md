@@ -105,7 +105,7 @@ When the notifier is clicked, actions you specify here are executed sequentially
 |OpenUnreadIfOnlyOne|Opens an unread email if there is only one.|When the unread count is 1 and the mail is opened.|
 |MarkAllAsRead|Marks all emails in the folder as read.|Always.|
 |ToggleDoNotDisturb|Toggles [Do Not Disturb mode](#do-not-disturb).|Always.|
-|FocusOnApp|Focuses on the specified app window. The app name is a process name which you can check in the properties window from Task Manager.|When the app exists.|
+|FocusOnApp|Focuses on the specified app window. An app name is specified by an argument which is a process name that Get-Process PowerShell command returns. Normally it's an executable file name without `".exe"` (e.g. `"outlook"`, `"chrome"`, `"firefox"`).|When the app exists.|
 |SendKeysToAppInFocus|Sends keyboard inputs to the app in focus. The key string format follows Windows.Forms.SendKeys format: https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.sendkeys?view=net-5.0|Always.|
 |SleepMilliseconds|Waits for specified milliseconds to tweak the timing for SendKeys.|Always.|
 |RunCommand|Runs any executable with arguments.|Always.|
@@ -129,7 +129,7 @@ When the notifier is clicked, actions you specify here are executed sequentially
     # Opens GitHub notifications page by sending shortcut keys to a pinned tab in Chrome.
     clickActions = @(
         ,@("MarkAllAsRead")
-        ,@("FocusOnApp", "chrome.exe")
+        ,@("FocusOnApp", "chrome")
         ,@("SendKeysToAppInFocus", "^1")
         ,@("SleepMilliseconds", 100)
         ,@("SendKeysToAppInFocus", "gn")
