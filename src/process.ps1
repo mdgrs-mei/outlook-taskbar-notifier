@@ -23,7 +23,12 @@ function FocusApp($processName)
 
 function GetMainProcess($processName)
 {
-    $processes = Get-Process -Name $processName
+    $processes = @(Get-Process -Name $processName)
+    if (-not $processes)
+    {
+        return
+    }
+
     foreach ($process in $processes)
     {
         if ($process.MainWindowHandle -ne 0)
@@ -31,6 +36,8 @@ function GetMainProcess($processName)
             return $process
         }
     }
+
+    return $processes[0]
 }
 
 function FocusProcess($process)
