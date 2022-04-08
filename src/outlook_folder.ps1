@@ -217,6 +217,12 @@ class OutlookFolder
         try 
         {
             $explorer = $this.outlook.ActiveExplorer()
+            if (-not $explorer)
+            {
+                $this.folder.Display()
+                $explorer = $this.outlook.ActiveExplorer()
+            }
+
             if ($explorer)
             {
                 $explorer.Activate()
@@ -230,10 +236,6 @@ class OutlookFolder
                     # Reset the selection to top.
                     $view.Apply()
                 }
-            }
-            else
-            {
-                $this.folder.Display()
             }
 
             FocusApp "outlook"
