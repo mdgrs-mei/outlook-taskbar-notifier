@@ -236,7 +236,7 @@ class OutlookFolder
                 $this.folder.Display()
             }
 
-            FocusApp "outlook.exe"
+            FocusApp "outlook"
         }
         catch
         {
@@ -259,7 +259,7 @@ class OutlookFolder
             }
             $items.Sort("[ReceivedTime]")
             $items[$items.Count].Display()
-            FocusApp "outlook.exe"
+            FocusApp "outlook"
             return $true
         }
         catch
@@ -284,7 +284,7 @@ class OutlookFolder
             }
             $items.Sort("[ReceivedTime]")
             $items[1].Display()
-            FocusApp "outlook.exe"
+            FocusApp "outlook"
             return $true
         }
         catch
