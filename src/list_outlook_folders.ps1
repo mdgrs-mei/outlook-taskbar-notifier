@@ -27,7 +27,16 @@ PrintFolders $namespace.Folders
 
 foreach ($store in $namespace.Stores)
 {
-    $searchFolders = $store.GetSearchFolders()
+    try
+    {
+        $searchFolders = $store.GetSearchFolders()
+    }
+    catch
+    {
+        # catch access rights errors
+        Write-Host $PSItem
+        continue
+    }
     PrintFolders $searchFolders
 }
 

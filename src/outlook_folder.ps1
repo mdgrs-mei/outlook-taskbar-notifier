@@ -46,7 +46,16 @@ class OutlookFolder
         {
             foreach ($store in $namespace.Stores)
             {
-                $searchFolders = $store.GetSearchFolders()
+                try
+                {
+                    $searchFolders = $store.GetSearchFolders()
+                }
+                catch
+                {
+                    # catch access rights errors
+                    Write-Host $PSItem
+                    continue
+                }
                 $this.folder = [OutlookFolder]::FindFolder($searchFolders, $this.folderPath)
                 if ($this.IsFolderValid())
                 {
