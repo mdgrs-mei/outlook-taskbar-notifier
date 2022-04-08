@@ -46,7 +46,6 @@ function FocusProcess($process)
     if ($state -eq "")
     {
         # The process has no window
-        ActivateProcess $process
         return
     }
 
