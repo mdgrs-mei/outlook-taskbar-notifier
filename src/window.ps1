@@ -55,6 +55,25 @@ class Window
     {
     }
 
+    [void] InitJumpList()
+    {
+        $jumpList = New-Object System.Windows.Shell.JumpList
+
+        $jumpTask = New-Object System.Windows.Shell.JumpTask
+        $jumpTask.Title = "Open settings location"
+        $jumpTask.ApplicationPath = "explorer.exe"
+        $jumpTask.IconResourcePath = "explorer.exe"
+        $jumpTask.Arguments = "/select,`"{0}`"" -f $this.settings.path
+        $jumpList.JumpItems.Add($jumpTask)
+
+        $jumpTask = New-Object System.Windows.Shell.JumpTask
+        $jumpTask.Title = "Run with debug console"
+        $jumpTask.Arguments = "-ExecutionPolicy Bypass -File `"{0}`" `"{1}`" -SkipJumpList" -f $this.settings.notifierPath, $this.settings.path
+        $jumpList.JumpItems.Add($jumpTask)
+
+        $jumpList.Apply()
+    }
+
     [void] OnLoaded()
     {
         $this.mainWindowHandle = (New-Object System.Windows.Interop.WindowInteropHelper($this.window)).Handle

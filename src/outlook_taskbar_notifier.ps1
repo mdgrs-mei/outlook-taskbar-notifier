@@ -1,7 +1,8 @@
 ﻿Add-Type -AssemblyName PresentationFramework
 
-$scriptDir = Split-Path $MyInvocation.MyCommand.Path -Parent
-Set-Location $scriptDir
+$notifierPath = $MyInvocation.MyCommand.Path
+$srcDir = Split-Path $notifierPath -Parent
+Set-Location $srcDir
 
 . .\settings_helper.ps1
 . .\process.ps1
@@ -11,7 +12,7 @@ Set-Location $scriptDir
 . .\action_generator.ps1
 
 $settingsPath = $args[0]
-$settings = InitSettings $settingsPath
+$settings = InitSettings $settingsPath $notifierPath
 
 $outlookFolder = [OutlookFolder]::new()
 $outlookFolder.Init($settings)
@@ -19,6 +20,10 @@ $outlookFolder.Init($settings)
 $windowTitle = $outlookFolder.GetName()
 $window = [Window]::new()
 $window.Init(".\window.xaml", $windowTitle, $settings)
+if (-not ($args -Contains "-SkipJumpList"))
+{
+    $window.InitJumpList()
+}
 
 $updateUnreadFunc = {
     $unreadCount = $outlookFolder.GetUnreadCount()

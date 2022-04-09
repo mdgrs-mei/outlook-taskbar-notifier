@@ -1,8 +1,11 @@
-function InitSettings($settingsPath)
+function InitSettings($settingsPath, $notifierPath)
 {
     . $settingsPath
+
     $dir = Split-Path $settingsPath -Parent
+    $settings.path = $settingsPath
     $settings.directory = $dir
+    $settings.notifierPath = $notifierPath
     $settings
 }
 
