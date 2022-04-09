@@ -51,14 +51,18 @@ foreach ($thumbButtonSetting in $settings.thumbButtons)
     $button.Command = New-Object DelegateCommand($actionSequence)
 }
 
-$window.StartTimerFunction({
+function Update()
+{
     $outlookFolder.InitOutlookIfNotValid()
     if ($settings.doNotDisturb.globalMode)
     {
         $window.ReferToGlobalDoNotDisturb()
     }
     Invoke-Command $updateUnreadFunc
-}, $settings.updateUnreadCountIntervalInSeconds)
+}
+
+Update
+$window.StartTimerFunction({Update}, $settings.updateUnreadCountIntervalInSeconds)
 $window.ShowDialog()
 $window.Term()
 
