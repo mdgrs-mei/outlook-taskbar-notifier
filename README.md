@@ -3,6 +3,7 @@
 # Outlook Taskbar Notifier
 
 [![GitHub license](https://img.shields.io/github/license/mdgrs-mei/outlook-taskbar-notifier)](https://github.com/mdgrs-mei/outlook-taskbar-notifier/blob/main/LICENSE)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/mdgrs-mei/outlook-taskbar-notifier?label=latest%20release)](https://github.com/mdgrs-mei/outlook-taskbar-notifier/releases/latest)
 [![GitHub all releases](https://img.shields.io/github/downloads/mdgrs-mei/outlook-taskbar-notifier/total)](https://github.com/mdgrs-mei/outlook-taskbar-notifier/releases/latest)
 
 Outlook Taskbar Notifier is a Windows taskbar application that notifies you of unread emails in an Outlook folder by showing an overlay badge.
