@@ -7,7 +7,7 @@ $settings = @{
         folderPath = "\\your-email-addres@sample.com\folder-name"
     }
 
-    # Icon file used for the title bar. The path should be either a relative path from this settings file or a full path.
+    # Icon file used for the title bar. The path should be either a relative path from the directory of this settings file or a full path.
     iconPath = ".\icons\icon.png"
 
     # Unread count is queried with this interval.
