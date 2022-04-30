@@ -27,7 +27,7 @@ class Window
         $this.window = [System.Windows.Markup.XamlReader]::Load($nodeReader)
         $this.window.Title = $title
 
-        $iconPath = GetFullPathFromSettingsRelativePath $settings $settings.iconPath
+        $iconPath = $settings.GetFullPath($settings.iconPath)
         if ($iconPath)
         {
             $this.window.Icon = $iconPath
@@ -122,7 +122,7 @@ class Window
         $button.Description = $thumbButtonSetting.description
         $button.DismissWhenClicked = $true
 
-        $iconPath = GetFullPathFromSettingsRelativePath $this.settings $thumbButtonSetting.iconPath
+        $iconPath = $this.settings.GetFullPath($thumbButtonSetting.iconPath)
         if ($iconPath)
         {
             $button.ImageSource = $iconPath

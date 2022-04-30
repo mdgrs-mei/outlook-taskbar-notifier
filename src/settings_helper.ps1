@@ -6,18 +6,25 @@ function InitSettings($settingsPath, $notifierPath)
     $settings.path = $settingsPath
     $settings.directory = $dir
     $settings.notifierPath = $notifierPath
-    $settings
-}
 
-function GetFullPathFromSettingsRelativePath($settings, $path)
-{
-    if (-not $path)
-    {
-        return ""
+    $getFullPath = {
+        param($relativePath)
+        if (-not $relativePath)
+        {
+            return ""
+        }
+
+        Push-Location $this.directory
+        $fullPath = Resolve-Path $relativePath
+        Pop-Location
+
+        if (-not $fullPath)
+        {
+            Write-Host "Path does not exist. [$relativePath]"
+        }
+        $fullPath.Path
     }
+    Add-Member -InputObject $settings -MemberType ScriptMethod -Name "GetFullPath" -Value $getFullPath
 
-    Push-Location $settings.directory
-    $fullPath = Resolve-Path $path
-    Pop-Location
-    $fullPath.Path
+    $settings
 }
