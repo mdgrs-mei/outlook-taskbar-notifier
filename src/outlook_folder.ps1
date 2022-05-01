@@ -235,10 +235,11 @@ class OutlookFolder
             if ($explorer)
             {
                 $explorer.Activate()
-                $explorer.CurrentFolder = $this.folder
-
                 $explorer.ClearSearch()
                 $explorer.ClearSelection()
+                
+                $explorer.CurrentFolder = $this.folder
+
                 $view = $explorer.CurrentView
                 if ($view)
                 {
