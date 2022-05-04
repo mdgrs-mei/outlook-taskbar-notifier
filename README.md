@@ -180,6 +180,14 @@ unreadItemsSummary = @{
 
 Titles of unread emails are displayed on top of the thumbnail window.
 
+## Treat all as unread
+
+``` powershell
+treatAllAsUnread = $false
+```
+
+If this is set to `$true`, all of the emails in the folder are treated as unread. The badge count indicates the number of emails, not the actual unread count. This is useful for Follow up Search Folders.
+
 # Tools
 
 ## [tools/list_outlook_folders.bat](./tools/list_outlook_folders.bat)
