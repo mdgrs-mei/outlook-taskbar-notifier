@@ -188,12 +188,6 @@ treatAllAsUnread = $false
 
 If this is set to `$true`, all of the emails in the folder are treated as unread. The badge count indicates the number of emails, not the actual unread count. This is useful for Follow up Search Folders.
 
-# Reporting Issues
-
-If the notifier cannot connect to Outlook, `"E"` badge is shown to indicate the erorr. When this or any other issues happen, right click the notifier icon and press `Run with debug console`. The messages on the console might help you find the cause of the issue. If it doesn't help, please create an issue on [GitHub](https://github.com/mdgrs-mei/outlook-taskbar-notifier/issues).
-
-<img src="./docs/debug_console.png" width=320>
-
 # Tools
 
 ## [tools/list_outlook_folders.bat](./tools/list_outlook_folders.bat)
@@ -207,6 +201,12 @@ This tool takes a settings file and creates a shortcut to run the notifier. If y
 ## [tools/convert_image_to_ico.bat](./tools/convert_image_to_ico.bat)
 
 Converts an image to `.ico` file. When you want to update the icon of the shortcut, run this tool.
+
+# Reporting Issues
+
+If the notifier cannot connect to Outlook, `"E"` badge is shown to indicate the erorr. When this or any other issues happen, right click the notifier icon and press `Run with debug console`. The messages on the console might help you find the cause of the issue. If it doesn't help, please create an issue on [GitHub](https://github.com/mdgrs-mei/outlook-taskbar-notifier/issues).
+
+<img src="./docs/debug_console.png" width=320>
 
 # Sample Icons
 
