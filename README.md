@@ -10,7 +10,7 @@
 
 Outlook Taskbar Notifier is a Windows taskbar application that notifies you of unread emails in an Outlook folder by showing an overlay badge.
 
-![capture](./docs/capture.gif)
+![capture](https://user-images.githubusercontent.com/81177095/208241237-dd284990-7296-4966-b896-7b873255d09f.gif)
 
 </div>
 
@@ -53,7 +53,8 @@ An icon file used for the title bar. The image is converted to `.ico` file durin
 
 ## Overlay icon
 
-![overlay_icon](./docs/overlay_icon.png)
+![overlay_icon](https://user-images.githubusercontent.com/81177095/208241259-5ae70ed9-8cb0-4fa8-9179-791e28274a4e.png)
+
 ``` powershell
 overlayIcon = @{
     size = 20.0
@@ -70,7 +71,8 @@ If you want to hide the unread number, set `textColor` to `"Transparent"`.
 
 ## Taskbar icon flashing
 
-![icons](./docs/taskbar.png)
+![taskbar](https://user-images.githubusercontent.com/81177095/208241272-2ea71711-bbee-4de9-898c-e919f1dd3446.png)
+
 ``` powershell
 flashTaskbar = @{
     enable = $true
@@ -82,7 +84,7 @@ You can change the flash rate and count or you can completely disable this featu
 
 ## Do Not Disturb
 
-![do_not_disturb](./docs/do_not_disturb.png)
+![do_not_disturb](https://user-images.githubusercontent.com/81177095/208241277-9019164f-6720-4e3f-b96f-7a9d89770855.png)
 
 ``` powershell
 doNotDisturb = @{
@@ -151,7 +153,7 @@ When the notifier is clicked, actions you specify here are executed sequentially
 
 ## Thumb buttons
 
-<img src="./docs/thumb_buttons.png" width=260>
+<img src="https://user-images.githubusercontent.com/81177095/208241294-b822aedb-e283-4693-97c5-c01566913ee8.png" width=260>
 
 ``` powershell
 thumbButtons = @(
@@ -168,7 +170,7 @@ You can add maximum 7 thumb buttons and define actions performed when they are c
 
 ## Unread items summary
 
-<img src="./docs/unread_items_summary.png" width=260>
+<img src="https://user-images.githubusercontent.com/81177095/208241321-6a1b683e-0d21-4d04-b745-649151bbdb51.png" width=260>
 
 ``` powershell
 unreadItemsSummary = @{
@@ -206,7 +208,7 @@ Converts an image to `.ico` file. When you want to update the icon of the shortc
 
 If the notifier cannot connect to Outlook, `"E"` badge is shown to indicate the erorr. When this or any other issues happen, right click the notifier icon and press `Run with debug console`. The messages on the console might help you find the cause of the issue. If it doesn't help, please create an issue on [GitHub](https://github.com/mdgrs-mei/outlook-taskbar-notifier/issues).
 
-<img src="./docs/debug_console.png" width=320>
+<img src="https://user-images.githubusercontent.com/81177095/208241366-0da053fb-108d-4733-99fd-ce16dc92c312.png" width=320>
 
 # Sample Icons
 
