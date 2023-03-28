@@ -118,6 +118,8 @@ When the notifier is clicked, actions you specify here are executed sequentially
 |SleepMilliseconds|Waits for specified milliseconds to tweak the timing for SendKeys.|Always.|
 |RunCommand|Runs any executable with arguments.|Always.|
 |RunCommandAndWait|Runs any executable with arguments and waits until the process finishes.|Always.|
+|RunCommandWithNewWindow|Runs any executable in a new window with arguments.|Always.|
+|RunCommandAndWaitWithNewWindow|Runs any executable in a new window with arguments and waits until the process finishes.|Always.|
 |Or|Executes actions specified as arguments sequentially and returns when an action succeeds.|When one of the actions succeeds.|
 
 ### More complex examples
