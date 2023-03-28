@@ -1,0 +1,22 @@
+name: Publish Release
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  publish_release:
+    name: Publish Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Create Zip
+        run: |
+          zip -r outlook-taskbar-notifier.zip ./ -x "*.git*"
+          
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "outlook-taskbar-notifier.zip"
