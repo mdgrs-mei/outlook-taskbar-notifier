@@ -97,6 +97,30 @@ class ActionGenerator
                 }
                 $true
             }
+
+            "RunCommandWithNewWindow" = {
+                if ($args.Length -gt 1)
+                {
+                    Start-Process $args[0] -ArgumentList $args[1..($args.Length-1)]
+                }
+                else
+                {
+                    Start-Process $args[0]
+                }
+                $true
+            }
+
+            "RunCommandAndWaitWithNewWindow" = {
+                if ($args.Length -gt 1)
+                {
+                    Start-Process $args[0] -ArgumentList $args[1..($args.Length-1)] -Wait
+                }
+                else
+                {
+                    Start-Process $args[0] -Wait
+                }
+                $true
+            }
         }
     }
 
